@@ -4,6 +4,7 @@
   "description": "A parametric straight-spoked wheel drawing, for Maker.js",
   "main": "index.js",
   "scripts": {
+    "browserify": "browserify -r ./index.js:makerjs-spokes-straight --exclude makerjs > index.browser.js",
     "test": "node test.js"
   },
   "repository": {
@@ -21,6 +22,6 @@
   "homepage": "https://github.com/danmarshall/makerjs-spokes-straight",
   "dependencies": {
     "makerjs": "^0.6.3",
-    "makerjs-spoke-wedge": "^1.0.0"
+    "makerjs-spoke-wedge": "^1.0.1"
   }
 }
