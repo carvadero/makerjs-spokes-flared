@@ -1,6 +1,6 @@
 {
   "name": "makerjs-spokes-straight",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A parametric straight-spoked wheel drawing, for Maker.js",
   "main": "index.js",
   "scripts": {
