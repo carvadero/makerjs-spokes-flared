@@ -1,0 +1,25 @@
+{
+  "name": "makerjs-spokes-straight",
+  "version": "1.0.0",
+  "description": "A parametric straight-spoked wheel drawing, for Maker.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danmarshall/makerjs-spokes-straight.git"
+  },
+  "keywords": [
+    "makerjs"
+  ],
+  "author": "Dan Marshall",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/danmarshall/makerjs-spokes-straight/issues"
+  },
+  "homepage": "https://github.com/danmarshall/makerjs-spokes-straight",
+  "dependencies": {
+    "makerjs": "^0.6.3"
+  }
+}

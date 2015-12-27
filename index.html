@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>straight spokes</title>
+	<script src="http://microsoft.github.io/maker.js/target/js/browser.maker.js"></script>
+	<script>
+		var module = {};
+	</script>
+
+	<script src="index.js"></script>
+</head>
+<body>
+	<script>
+		var makerjs = require('makerjs');
+		var model = new StraightSpokes(100, 30, 10, 5, 0, false);
+		document.write(makerjs.exporter.toSVG(model));
+	</script>
+</body>
+</html>
