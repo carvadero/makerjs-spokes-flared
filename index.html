@@ -9,8 +9,8 @@
 <body>
 	<script>
 		var makerjs = require('makerjs');
-        var StraightSpokes = require('makerjs-spokes-straight');
-		var model = new StraightSpokes(100, 30, 10, 5, 0, .1, .1, false);
+        var FlaredSpokes = require('makerjs-spokes-flared');
+		var model = new FlaredSpokes(100, 40, 5, 40, 10, 5, 10, false);
 		document.write(makerjs.exporter.toSVG(model));
 	</script>
 </body>
