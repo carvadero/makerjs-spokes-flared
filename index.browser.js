@@ -42,35 +42,44 @@ var SpokeWedge = (function () {
 })();
 module.exports = SpokeWedge;
 
-},{"makerjs":undefined}],"makerjs-spokes-straight":[function(require,module,exports){
+},{"makerjs":undefined}],"makerjs-spokes-flared":[function(require,module,exports){
 var makerjs = require('makerjs');
 var SpokeWedge = require('makerjs-spoke-wedge');
 
-function StraightSpokes(outerRadius, innerRadius, count, spokeWidth, offsetPct, innerFillet, outerFillet, addRing) {
+function FlaredSpokes(outerRadius, innerRadius, count, spokeWidth, flareWidth, innerFillet, outerFillet, addRing) {
 
     var a = 360 / count;
     var halfSpokeWidth = spokeWidth / 2;
-    var offset = (offsetPct / 100) * (innerRadius - halfSpokeWidth);
-
-    var spoke = new makerjs.models.Rectangle(spokeWidth, outerRadius + 1);
-    spoke.origin = [-halfSpokeWidth + offset, 0];
-    makerjs.model.originate(spoke);
+    var halfFlareWidth = flareWidth / 2;
+    var flareLine = new makerjs.paths.Line([halfFlareWidth, 0], [halfFlareWidth, outerRadius]);
+    var outerCircle = new makerjs.paths.Circle([0, 0], outerRadius);
+    var int = makerjs.path.intersection(flareLine, outerCircle);
+    var flareY = int.intersectionPoints[0][1];
+    var points = [
+            [halfSpokeWidth, 0], 
+            [halfFlareWidth, flareY], 
+            [halfFlareWidth, outerRadius + 1], 
+            [-halfFlareWidth, outerRadius + 1],
+            [-halfFlareWidth, flareY], 
+            [-halfSpokeWidth, 0]
+        ];
+    var spoke = new makerjs.models.ConnectTheDots(true, points);
 
     var wedge = new SpokeWedge(spoke, outerRadius, innerRadius, count);
 
     if (innerFillet) {
-        var innerFilletArc = makerjs.path.fillet(wedge.paths.ShapeLine2, wedge.paths.ShapeLine4, innerFillet);
+        var innerFilletArc = makerjs.path.fillet(wedge.paths.ShapeLine1, wedge.paths.ShapeLine5, innerFillet);
         if (innerFilletArc) {
             wedge.paths.innerFillet = innerFilletArc;
         } else {
-            wedge.paths.innerFillet1 = makerjs.path.fillet(wedge.paths.ShapeLine2, wedge.paths.Ring_inner, innerFillet);
-            wedge.paths.innerFillet2 = makerjs.path.fillet(wedge.paths.ShapeLine4, wedge.paths.Ring_inner, innerFillet);
+            wedge.paths.innerFillet1 = makerjs.path.fillet(wedge.paths.ShapeLine1, wedge.paths.Ring_inner, innerFillet);
+            wedge.paths.innerFillet2 = makerjs.path.fillet(wedge.paths.ShapeLine5, wedge.paths.Ring_inner, innerFillet);
         }
     }
 
     if (outerFillet) {
-        wedge.paths.outerFillet1 = makerjs.path.fillet(wedge.paths.ShapeLine2, wedge.paths.Ring_outer, outerFillet);
-        wedge.paths.outerFillet2 = makerjs.path.fillet(wedge.paths.ShapeLine4, wedge.paths.Ring_outer, outerFillet);
+        wedge.paths.outerFillet1 = makerjs.path.fillet(wedge.paths.ShapeLine1, wedge.paths.Ring_outer, outerFillet);
+        wedge.paths.outerFillet2 = makerjs.path.fillet(wedge.paths.ShapeLine5, wedge.paths.Ring_outer, outerFillet);
     }
 
     this.models = {};
@@ -85,18 +94,17 @@ function StraightSpokes(outerRadius, innerRadius, count, spokeWidth, offsetPct, 
     }
 }
 
-
-StraightSpokes.metaParameters = [
+FlaredSpokes.metaParameters = [
     { title: "outer radius", type: "range", min: 2, max: 100, step: 1, value: 100 },
-    { title: "inner radius", type: "range", min: 1, max: 90, step: 1, value: 30 },
-    { title: "spoke count", type: "range", min: 1, max: 40, step: 1, value: 10 },
-    { title: "spoke width", type: "range", min: 1, max: 10, step: 1, value: 5 },
-    { title: "spoke offset percent", type: "range", min: 0, max: 100, step: 1, value: 67 },
-    { title: "inner fillet", type: "range", min: 0, max: 20, step: .1, value: 0 },
-    { title: "outer fillet", type: "range", min: 0, max: 20, step: .1, value: 0 },
+    { title: "inner radius", type: "range", min: 1, max: 90, step: 1, value: 40 },
+    { title: "spoke count", type: "range", min: 1, max: 40, step: 1, value: 5 },
+    { title: "spoke width", type: "range", min: 1, max: 50, step: 1, value: 40 },
+    { title: "flare width", type: "range", min: 1, max: 40, step: 1, value: 10 },
+    { title: "inner fillet", type: "range", min: 0, max: 20, step: .1, value: 4 },
+    { title: "outer fillet", type: "range", min: 0, max: 20, step: .1, value: 10 },
     { title: "add ring", type: "bool", value: true }
 ];
 
-module.exports = StraightSpokes;
+module.exports = FlaredSpokes;
 
 },{"makerjs":undefined,"makerjs-spoke-wedge":1}]},{},[]);
