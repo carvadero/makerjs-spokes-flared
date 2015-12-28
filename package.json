@@ -1,15 +1,15 @@
 {
-  "name": "makerjs-spokes-straight",
+  "name": "makerjs-spokes-flared",
   "version": "1.1.1",
-  "description": "A parametric straight-spoked wheel drawing, for Maker.js",
+  "description": "A parametric flared straight-spoked wheel drawing, for Maker.js",
   "main": "index.js",
   "scripts": {
-    "browserify": "browserify -r ./index.js:makerjs-spokes-straight --exclude makerjs > index.browser.js",
+    "browserify": "browserify -r ./index.js:makerjs-spokes-flared --exclude makerjs > index.browser.js",
     "test": "node test.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/danmarshall/makerjs-spokes-straight.git"
+    "url": "https://github.com/carvadero/makerjs-spokes-flared.git"
   },
   "keywords": [
     "makerjs"
@@ -17,9 +17,9 @@
   "author": "Dan Marshall",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/danmarshall/makerjs-spokes-straight/issues"
+    "url": "https://github.com/carvadero/makerjs-spokes-flared/issues"
   },
-  "homepage": "https://github.com/danmarshall/makerjs-spokes-straight",
+  "homepage": "https://github.com/carvadero/makerjs-spokes-flared",
   "dependencies": {
     "makerjs": "^0.6.3",
     "makerjs-spoke-wedge": "^1.0.1"
