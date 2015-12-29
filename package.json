@@ -1,6 +1,6 @@
 {
   "name": "makerjs-spokes-flared",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A parametric flared straight-spoked wheel drawing, for Maker.js",
   "main": "index.js",
   "scripts": {
